@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Responsive Design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BookLibrary</title>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="./src/output.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#EED5D1] text-[#24151B]">
+
+    <!-- =====================================================
+         MAIN APP CONTAINER
+         ===================================================== -->
+    <div id="app" class="min-h-screen flex">
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+        <aside
+            id="sidebar"
+            class="hidden md:flex w-64 min-h-screen bg-white border-r border-[#EED5D1] flex-col justify-between p-6 fixed left-0 top-0"
+        >
+
+            <!-- Sidebar Top -->
+            <div>
+
+                <!-- Logo -->
+                <div class="flex items-center gap-3 mb-10">
+
+                    <div
+                        class="w-10 h-10 rounded-xl bg-[#D1114D] text-white flex items-center justify-center"
+                    >
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                    </div>
+
+                    <h1 class="text-xl font-bold">
+                        Book<span class="text-[#D1114D]">Library</span>
+                    </h1>
+
+                </div>
+
+
+                <!-- Navigation -->
+                <nav class="space-y-2">
+
+                    <!-- Home -->
+                    <button
+                        id="homeNav"
+                        class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-[#D1114D] text-white font-medium text-left"
+                    >
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                        <span>Home</span>
+                    </button>
+
+
+                    <!-- My Books -->
+                    <button
+                        id="myBooksNav"
+                        class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#EED5D1] font-medium text-left"
+                    >
+                        <i data-lucide="book-marked" class="w-5 h-5"></i>
+                        <span>My Books</span>
+                    </button>
+
+
+                    <!-- History -->
+                    <button
+                        id="historyNav"
+                        class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-[#EED5D1] font-medium text-left"
+                    >
+                        <i data-lucide="history" class="w-5 h-5"></i>
+                        <span>History</span>
+                    </button>
+
+                </nav>
+
+            </div>
+
+
+            <!-- Theme Toggle -->
+            <div>
+
+                <div class="flex items-center justify-between">
+
+                    <div class="flex items-center gap-2 text-sm font-medium">
+
+                        <i
+                            id="themeIcon"
+                            data-lucide="sun"
+                            class="w-5 h-5 text-[#D1114D]"
+                        ></i>
+
+                        <span id="themeText">
+                            Light Theme
+                        </span>
+
+                    </div>
+
+
+                    <!-- Theme Button -->
+                    <button
+                        id="themeToggle"
+                        aria-label="Toggle theme"
+                        class="w-12 h-6 rounded-full bg-[#D1114D] p-1"
+                    >
+
+                        <span
+                            id="themeCircle"
+                            class="block w-4 h-4 rounded-full bg-white translate-x-6"
+                        ></span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MOBILE HEADER
+             ================================================= -->
+        <header
+            class="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-[#EED5D1] px-4 py-3 flex items-center justify-between"
+        >
+
+            <!-- Mobile Logo -->
+            <div class="flex items-center gap-2">
+
+                <div
+                    class="w-9 h-9 rounded-lg bg-[#D1114D] text-white flex items-center justify-center"
+                >
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                </div>
+
+                <h1 class="font-bold">
+                    Book<span class="text-[#D1114D]">Library</span>
+                </h1>
+
+            </div>
+
+
+            <!-- Mobile Menu -->
+            <button
+                id="mobileMenuButton"
+                class="p-2 rounded-lg hover:bg-[#EED5D1]"
+            >
+                <i data-lucide="menu"></i>
+            </button>
+
+        </header>
+
+
+        <!-- =================================================
+             MOBILE SIDEBAR
+             ================================================= -->
+        <div
+            id="mobileMenu"
+            class="hidden fixed inset-0 z-40 bg-black/30 md:hidden"
+        >
+
+            <div
+                class="w-64 h-full bg-white p-6"
+            >
+
+                <div class="flex items-center justify-between mb-8">
+
+                    <h2 class="text-lg font-bold">
+                        Menu
+                    </h2>
+
+                    <button id="closeMobileMenu">
+                        <i data-lucide="x"></i>
+                    </button>
+
+                </div>
+
+                <nav class="space-y-2">
+
+                    <button
+                        class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl bg-[#D1114D] text-white"
+                    >
+                        Home
+                    </button>
+
+                    <button
+                        class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl hover:bg-[#EED5D1]"
+                    >
+                        My Books
+                    </button>
+
+                    <button
+                        class="mobile-nav-item w-full text-left px-4 py-3 rounded-xl hover:bg-[#EED5D1]"
+                    >
+                        History
+                    </button>
+
+                </nav>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+        <main class="w-full md:ml-64 min-h-screen">
+
+
+            <!-- =================================================
+                 TOP HEADER
+                 ================================================= -->
+            <div
+                class="px-5 md:px-8 pt-20 md:pt-6"
+            >
+
+                <div class="flex items-center gap-4">
+
+                    <!-- Search Container -->
+                    <div class="relative flex-1">
+
+                        <i
+                            data-lucide="search"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D6517C]"
+                        ></i>
+
+                        <!-- IMPORTANT:
+                             JavaScript search will use this ID -->
+                        <input
+                            id="bookSearch"
+                            type="search"
+                            placeholder="Search books by title or author..."
+                            class="w-full bg-white border border-[#EED5D1] rounded-xl py-3 pl-12 pr-4 outline-none focus:border-[#D1114D] focus:ring-2 focus:ring-[#F38592]/30"
+                        >
+
+                    </div>
+
+
+                    <!-- Desktop Theme Button -->
+                    <button
+                        id="desktopThemeToggle"
+                        class="hidden md:flex w-11 h-11 rounded-xl bg-white border border-[#EED5D1] items-center justify-center hover:bg-[#EED5D1]"
+                        aria-label="Toggle theme"
+                    >
+
+                        <i
+                            id="desktopThemeIcon"
+                            data-lucide="sun"
+                            class="w-5 h-5 text-[#D1114D]"
+                        ></i>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONTENT AREA
+                 ================================================= -->
+            <div class="p-5 md:p-8">
+
+
+                <!-- =================================================
+                     HERO SECTION
+                     ================================================= -->
+                <section
+                    id="homeSection"
+                    class="bg-white rounded-2xl border border-[#EED5D1] p-6 md:p-8 mb-8 overflow-hidden"
+                >
+
+                    <div
+                        class="flex flex-col md:flex-row items-center justify-between gap-6"
+                    >
+
+                        <!-- Hero Text -->
+                        <div>
+
+                            <p
+                                class="text-sm font-semibold text-[#D6517C] mb-2"
+                            >
+                                WELCOME TO BOOKLIBRARY
+                            </p>
+
+                            <h2
+                                class="text-3xl md:text-4xl font-extrabold leading-tight"
+                            >
+                                Discover Your Next
+                                <span class="block text-[#D1114D]">
+                                    Great Book
+                                </span>
+                            </h2>
+
+                            <p
+                                class="text-[#765D66] mt-3 max-w-md"
+                            >
+                                Explore a world of knowledge,
+                                one book at a time.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Simple Book Illustration -->
+                        <div
+                            class="hidden sm:flex relative w-52 h-32 items-center justify-center"
+                        >
+
+                            <!-- Book 1 -->
+                            <div
+                                class="absolute w-36 h-12 bg-[#D1114D] rounded-lg rotate-6 shadow-md"
+                            ></div>
+
+                            <!-- Book 2 -->
+                            <div
+                                class="absolute w-32 h-12 bg-[#F38592] rounded-lg -rotate-3 translate-y-5 shadow-md"
+                            ></div>
+
+                            <!-- Book 3 -->
+                            <div
+                                class="absolute w-28 h-10 bg-[#D6517C] rounded-lg rotate-3 translate-y-10 shadow-md"
+                            ></div>
+
+                            <!-- Plant -->
+                            <div
+                                class="absolute right-3 bottom-0 text-[#D1114D]"
+                            >
+                                <i
+                                    data-lucide="leaf"
+                                    class="w-12 h-12"
+                                ></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     CATEGORY SECTION
+                     ================================================= -->
+                <section class="mb-8">
+
+                    <div class="flex items-center justify-between mb-4">
+
+                        <h3 class="text-xl font-bold">
+                            Browse Categories
+                        </h3>
+
+                    </div>
+
+
+                    <!-- Category Buttons -->
+                    <div
+                        id="categoryButtons"
+                        class="flex gap-3 overflow-x-auto pb-2"
+                    >
+
+                        <button
+                            data-category="All"
+                            class="category-btn px-5 py-2 rounded-full bg-[#D1114D] text-white text-sm font-medium whitespace-nowrap"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            data-category="Fiction"
+                            class="category-btn px-5 py-2 rounded-full bg-white border border-[#EED5D1] text-sm font-medium whitespace-nowrap hover:bg-[#EED5D1]"
+                        >
+                            Fiction
+                        </button>
+
+                        <button
+                            data-category="Science"
+                            class="category-btn px-5 py-2 rounded-full bg-white border border-[#EED5D1] text-sm font-medium whitespace-nowrap hover:bg-[#EED5D1]"
+                        >
+                            Science
+                        </button>
+
+                        <button
+                            data-category="History"
+                            class="category-btn px-5 py-2 rounded-full bg-white border border-[#EED5D1] text-sm font-medium whitespace-nowrap hover:bg-[#EED5D1]"
+                        >
+                            History
+                        </button>
+
+                        <button
+                            data-category="Technology"
+                            class="category-btn px-5 py-2 rounded-full bg-white border border-[#EED5D1] text-sm font-medium whitespace-nowrap hover:bg-[#EED5D1]"
+                        >
+                            Technology
+                        </button>
+
+                        <button
+                            data-category="Biography"
+                            class="category-btn px-5 py-2 rounded-full bg-white border border-[#EED5D1] text-sm font-medium whitespace-nowrap hover:bg-[#EED5D1]"
+                        >
+                            Biography
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     MAIN GRID
+                     Books + Borrowing History
+                     ================================================= -->
+                <div class="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-8">
+
+
+                    <!-- =================================================
+                         POPULAR BOOKS
+                         ================================================= -->
+                    <section>
+
+                        <div
+                            class="flex items-center justify-between mb-4"
+                        >
+
+                            <h3 class="text-xl font-bold">
+                                Popular Books
+                            </h3>
+
+                            <button
+                                id="viewAllBooks"
+                                class="text-sm font-semibold text-[#D1114D] hover:underline"
+                            >
+                                View All →
+                            </button>
+
+                        </div>
+
+
+                        <!-- Books Grid -->
+                        <div
+                            id="booksGrid"
+                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                        >
+
+
+                            <!-- =========================================
+                                 BOOK CARD 1
+                                 ========================================= -->
+                            <article
+                                class="book-card bg-white border border-[#EED5D1] rounded-2xl p-4 hover:-translate-y-1 hover:shadow-lg"
+                                data-title="Atomic Habits"
+                                data-author="James Clear"
+                                data-category="Self Help"
+                            >
+
+                                <!-- Book Cover -->
+                                <div
+                                    class="h-48 rounded-xl bg-[#EED5D1] flex items-center justify-center mb-4 overflow-hidden"
+                                >
+                                    <img
+                                        src="https://covers.openlibrary.org/b/title/Atomic%20Habits-L.jpg"
+                                        alt="Atomic Habits book cover"
+                                        class="h-full w-auto object-cover"
+                                    >
+                                </div>
+
+
+                                <!-- Book Information -->
+                                <h4
+                                    class="book-title font-bold"
+                                >
+                                    Atomic Habits
+                                </h4>
+
+                                <p
+                                    class="book-author text-sm text-[#765D66] mt-1"
+                                >
+                                    James Clear
+                                </p>
+
+                                <span
+                                    class="category-badge inline-block mt-3 px-3 py-1 rounded-full bg-[#EED5D1] text-[#D1114D] text-xs font-medium"
+                                >
+                                    Self Help
+                                </span>
+
+
+                                <!-- Availability -->
+                                <div
+                                    class="flex items-center gap-2 mt-3 text-sm"
+                                >
+
+                                    <span
+                                        class="w-2 h-2 rounded-full bg-green-500"
+                                    ></span>
+
+                                    <span>
+                                        Available
+                                    </span>
+
+                                </div>
+
+
+                                <!-- Borrow Button -->
+                                <button
+                                    class="borrow-btn w-full mt-4 py-2.5 rounded-xl bg-[#D1114D] text-white font-semibold hover:bg-[#B70E43]"
+                                    data-book="Atomic Habits"
+                                >
+                                    Borrow
+                                </button>
+
+                            </article>
+
+
+                            <!-- =========================================
+                                 BOOK CARD 2
+                                 ========================================= -->
+                            <article
+                                class="book-card bg-white border border-[#EED5D1] rounded-2xl p-4 hover:-translate-y-1 hover:shadow-lg"
+                                data-title="Clean Code"
+                                data-author="Robert C. Martin"
+                                data-category="Technology"
+                            >
+
+                                <div
+                                    class="h-48 rounded-xl bg-[#24151B] flex items-center justify-center mb-4 overflow-hidden"
+                                >
+
+                                    <img
+                                        src="https://covers.openlibrary.org/b/title/Clean%20Code-L.jpg"
+                                        alt="Clean Code book cover"
+                                        class="h-full w-auto object-cover"
+                                    >
+
+                                </div>
+
+                                <h4 class="book-title font-bold">
+                                    Clean Code
+                                </h4>
+
+                                <p class="book-author text-sm text-[#765D66] mt-1">
+                                    Robert C. Martin
+                                </p>
+
+                                <span
+                                    class="category-badge inline-block mt-3 px-3 py-1 rounded-full bg-[#EED5D1] text-[#D1114D] text-xs font-medium"
+                                >
+                                    Technology
+                                </span>
+
+                                <div class="flex items-center gap-2 mt-3 text-sm">
+                                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span>Available</span>
+                                </div>
+
+                                <button
+                                    class="borrow-btn w-full mt-4 py-2.5 rounded-xl bg-[#D1114D] text-white font-semibold hover:bg-[#B70E43]"
+                                    data-book="Clean Code"
+                                >
+                                    Borrow
+                                </button>
+
+                            </article>
+
+
+                            <!-- =========================================
+                                 BOOK CARD 3
+                                 ========================================= -->
+                            <article
+                                class="book-card bg-white border border-[#EED5D1] rounded-2xl p-4 hover:-translate-y-1 hover:shadow-lg"
+                                data-title="Dune"
+                                data-author="Frank Herbert"
+                                data-category="Science Fiction"
+                            >
+
+                                <div
+                                    class="h-48 rounded-xl bg-[#F38592] flex items-center justify-center mb-4 overflow-hidden"
+                                >
+
+                                    <img
+                                        src="https://covers.openlibrary.org/b/title/Dune-L.jpg"
+                                        alt="Dune book cover"
+                                        class="h-full w-auto object-cover"
+                                    >
+
+                                </div>
+
+                                <h4 class="book-title font-bold">
+                                    Dune
+                                </h4>
+
+                                <p class="book-author text-sm text-[#765D66] mt-1">
+                                    Frank Herbert
+                                </p>
+
+                                <span
+                                    class="category-badge inline-block mt-3 px-3 py-1 rounded-full bg-[#EED5D1] text-[#D1114D] text-xs font-medium"
+                                >
+                                    Science Fiction
+                                </span>
+
+                                <div class="flex items-center gap-2 mt-3 text-sm">
+                                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span>Available</span>
+                                </div>
+
+                                <button
+                                    class="borrow-btn w-full mt-4 py-2.5 rounded-xl bg-[#D1114D] text-white font-semibold hover:bg-[#B70E43]"
+                                    data-book="Dune"
+                                >
+                                    Borrow
+                                </button>
+
+                            </article>
+
+
+                            <!-- =========================================
+                                 BOOK CARD 4
+                                 ========================================= -->
+                            <article
+                                class="book-card bg-white border border-[#EED5D1] rounded-2xl p-4 hover:-translate-y-1 hover:shadow-lg"
+                                data-title="Sapiens"
+                                data-author="Yuval Noah Harari"
+                                data-category="History"
+                            >
+
+                                <div
+                                    class="h-48 rounded-xl bg-[#EED5D1] flex items-center justify-center mb-4 overflow-hidden"
+                                >
+
+                                    <img
+                                        src="https://covers.openlibrary.org/b/title/Sapiens-L.jpg"
+                                        alt="Sapiens book cover"
+                                        class="h-full w-auto object-cover"
+                                    >
+
+                                </div>
+
+                                <h4 class="book-title font-bold">
+                                    Sapiens
+                                </h4>
+
+                                <p class="book-author text-sm text-[#765D66] mt-1">
+                                    Yuval Noah Harari
+                                </p>
+
+                                <span
+                                    class="category-badge inline-block mt-3 px-3 py-1 rounded-full bg-[#EED5D1] text-[#D1114D] text-xs font-medium"
+                                >
+                                    History
+                                </span>
+
+                                <div class="flex items-center gap-2 mt-3 text-sm">
+                                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span>Available</span>
+                                </div>
+
+                                <button
+                                    class="borrow-btn w-full mt-4 py-2.5 rounded-xl bg-[#D1114D] text-white font-semibold hover:bg-[#B70E43]"
+                                    data-book="Sapiens"
+                                >
+                                    Borrow
+                                </button>
+
+                            </article>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =================================================
+                         BORROWING HISTORY
+                         ================================================= -->
+                    <aside
+                        id="historySection"
+                        class="bg-white border border-[#EED5D1] rounded-2xl p-5 h-fit"
+                    >
+
+                        <div
+                            class="flex items-center gap-2 mb-6"
+                        >
+
+                            <div
+                                class="w-9 h-9 rounded-lg bg-[#EED5D1] text-[#D1114D] flex items-center justify-center"
+                            >
+                                <i data-lucide="history" class="w-5 h-5"></i>
+                            </div>
+
+                            <h3 class="text-lg font-bold">
+                                Borrowing History
+                            </h3>
+
+                        </div>
+
+
+                        <!-- History List -->
+                        <div
+                            id="historyList"
+                            class="space-y-4"
+                        >
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+            <footer
+                class="px-5 md:px-8 pb-6 text-center text-sm text-[#765D66]"
+            >
+
+                <p>
+                    BookLibrary © 2026
+                    <span class="mx-2">•</span>
+                    Read More, Grow More
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT ICON INITIALIZATION
+         ===================================================== -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

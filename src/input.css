@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+
+/* ==========================================================
+   DARK THEME
+   ========================================================== */
+
+/* Main headings and normal text */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode p,
+.dark-mode span,
+.dark-mode label {
+    color: #ffffff;
+}
+
+/* Muted text */
+.dark-mode .text-muted,
+.dark-mode .text-\[\#765D66\] {
+    color: #EED5D1;
+}
+
+/* White cards / sections */
+.dark-mode .bg-white {
+    background-color: #2F2228;
+}
+
+/* Search input */
+.dark-mode input {
+    background-color: #2F2228;
+    color: #ffffff;
+    border-color: #4A3039;
+}
+
+.dark-mode input::placeholder {
+    color: #C9AEB5;
+}
+
+/* Borders */
+.dark-mode .border-\[\#EED5D1\] {
+    border-color: #4A3039;
+}
+
+
+/* ==========================================================
+   DARK THEME - CATEGORY BUTTONS
+   ========================================================== */
+
+/* Category buttons */
+.dark-mode .category-btn {
+    background-color: #2F2228;
+    color: #EED5D1;
+    border-color: #4A3039;
+}
+
+/* Category button hover */
+.dark-mode .category-btn:hover {
+    background-color: #D6517C;
+    color: #ffffff;
+}
+
+/* Active category button */
+.dark-mode .category-btn.bg-\[\#D1114D\] {
+    background-color: #D1114D;
+    color: #ffffff;
+}
+
+
+/* ==========================================================
+   DARK THEME - BOOK CARD CATEGORY
+   ========================================================== */
+
+/* Category text/badge inside book cards */
+.dark-mode .book-card .text-\[\#D1114D\] {
+    color: #F38592;
+}
+
+/* If category has pink background */
+.dark-mode .book-card .bg-\[\#EED5D1\] {
+    background-color: #4A3039;
+    color: #F38592;
+}
+
+
+/* ==========================================================
+   BOOK CARD - DARK MODE
+   ========================================================== */
+
+/* Category badge inside book card */
+.dark-mode .book-card .category-badge {
+    background-color: #4A3039 !important;
+    color: #F38592 !important;
+}
+
+/* Book card title */
+.dark-mode .book-card h3 {
+    color: #ffffff !important;
+}
+
+/* Book card author */
+.dark-mode .book-card p {
+    color: #EED5D1 !important;
+}
+
+/* Borrow button */
+.dark-mode .book-card .borrow-btn {
+    background-color: #D1114D !important;
+    color: #ffffff !important;
+}
+
+.dark-mode .book-card .borrow-btn:hover {
+    background-color: #D6517C !important;
+}
